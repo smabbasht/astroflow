@@ -1,0 +1,11 @@
+corner
+matplotlib
+mpmath
+numpy 
+pandas
+scipy
+scikit-learn
+tensorflow
+tensorflow_probability
+tqdm
+six
