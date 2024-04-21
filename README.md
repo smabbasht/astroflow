@@ -1,7 +1,7 @@
 # Astroflow 🚀
 
 ## Introduction
-A python library accompanied with a minimal dashboard to allow practicioners to easily infer Binary Blackholes population parameters feasibly. It involves use of a mix of techniques, which involves normalizing flows, traditional neural network layers, Convolutional layers, Pooling layers and Bayesflow's DeepSet architecture. These techniques are jointly employed to produce an architecture that performs the inference of interest 
+A python library accompanied with a minimal dashboard to allow practicioners to easily infer Binary Blackholes population parameters. It involves use of a mix of techniques, which involves normalizing flows, traditional neural network layers, Convolutional layers, Pooling layers and Bayesflow's DeepSet architecture. These techniques are jointly employed to produce an architecture that performs the inference of interest 
 
 ## Architecture
 The architecture is broadly divided into two main subarchitectures; Summary Network and an Inference Network.
