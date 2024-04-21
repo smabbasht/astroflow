@@ -177,14 +177,14 @@ class BayesianFlowNetwork:
         Dense(64, activation='relu'),
         BatchNormalization(),
 
-        DeepSet(30)
+        SequenceNetwork(30)
     ])
 
     def set_inference_network(self):
         self.inference_network = InvertibleNetwork(
             num_params=8,  # parameters to estimate
-            num_coupling_layers=8,
-            # coupling_design="spline",
+            num_coupling_layers=5,
+            coupling_design="spline",
             use_act_norm=True,
             use_soft_flow=True,
             # coupling_settings={"dense_args": dict(kernel_regularizer=None), "dropout": False},

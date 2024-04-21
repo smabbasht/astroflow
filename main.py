@@ -44,7 +44,7 @@ model.train()
 # ----------------------------------------------
 
 samples=model.predict()
-model.plot(samples, model.y_test[:100], "figures", "bfn_14")
+model.plot(samples, model.y_test[:100], "figures", "bfn_20")
 
 # ----------------------------------------------
 
