@@ -11,7 +11,14 @@ Summary Network consists of traditional nerual net layers along with the summary
 Inference Network exploits the summary vector received using coupling layers provided by the Bayesflow's InvertibleNetwork architecture. It produces the distribution object so you can easily produce any number of samples for the parameters of interest. 
 
 ## How to use
-- clone the repository.
-- run the following command to install dependencies `pip install -r requirements.txt`.
-- run `convert.py` script to convert nc files to csv (not required if you already have data in .csv files). Before running change the path to the location where your files are stored.
-- run the `python3 test.py` command to train and test model. Before running change the **datapath** variable to location where your data is stored.
+- Clone the repository.
+```
+git clone https://github.com/BlackLigo/astroflow/
+```
+- Run the following command to install dependencies: 
+```
+pip install -r requirements.txt
+```
+- Run `convert.py` script to convert nc files to csv (not required if you already have data in .csv files). Before running change the path to the location where your files are stored.
+- Run `dataset.py` **with adjusted paths** to convert your csv files into `*.npy` files to be used by the model. (You can now delete your csv files to save space).
+- Run `main.py` command to train and test model. Before running change the **datapath** variable to location where your data is stored.
