@@ -1,8 +1,14 @@
-# bnn
-A library to infer Binary Blackholes population using Bayesian Neural Networks
+# Astroflow 🚀
+A python library accompanied with a minimal dashboard to allow practicioners to easily infer Binary Blackholes population parameters using a mix of techniques, which involves normalizing flows, traditional neural network layers, Convolutional layers, Pooling layers and Bayesflow's DeepSet architecture. These techniques are jointly employed to produce an architecture that performs the inference of interest 
 
-# MCNeural Networks
-A simple Neural Network with MCDropout to approximately simulate Bayesian Neural Networks implemented in Model.py file
+# Architecture
+The architecture is broadly divided into two main subarchitectures; Summary Network and an Inference Network.
+
+## Summary Network
+Summary Network consists of traditional nerual net layers along with the summary layer of DeepSet provided by Bayesflow. This produces a summary vector which is then fed to our inference network.
+
+## Inference Network
+Inference Network exploits the summary vector received using coupling layers provided by the Bayesflow's InvertibleNetwork architecture. It produces the distribution object so you can easily produce any number of samples for the parameters of interest. 
 
 ## How to use
 - clone the repository.
