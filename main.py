@@ -17,7 +17,7 @@ dataset = Dataset('../amanda/test/output_csv/', "", 0.1)
 print("Loading Data")
 print()
 # input_data = dataset.preprocess_amanda('dataset_arrays_1000')
-input_data = dataset.load_data("dataset_arrays_4000")
+input_data = dataset.load_data("dataset_arrays_3000")
 # print("Loaded 5x data")
 # cropped_input_data = [x[:1000] for x in input_data[:2]], [x[:50] for x in input_data[2:]]
 # del x for x in input_data
@@ -50,13 +50,6 @@ model.plot(samples, model.y_test[:100], "figures", "bfn_14")
 
 # print("Saving the model")
 # model.save_model('models/model')
-
-
-
-
-
-
-
 
 # model.load_model('models/model.pth')
 # predictions, truths = model.infer(data_offset=2000, n_examples=50)

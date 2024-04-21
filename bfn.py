@@ -123,7 +123,6 @@ class BayesianFlowNetwork:
     #         SequenceNetwork(summary_dim=32, num_conv_layers=5, bidirectional=True),
     #         ])
 
-    def set_summary_network(self):
     #     self.summary_network = Sequential([
     #         Flatten(input_shape=self.input_shape),
     #         Dense(256, activation='relu', kernel_regularizer=l2(0.01)),
@@ -132,41 +131,6 @@ class BayesianFlowNetwork:
     #         BatchNormalization(),
     #         Dense(128, activation='relu', kernel_regularizer=l2(0.01)),
     #         ])
-
-        self.summary_network = Sequential([
-        # First conv layer
-        Conv2D(32, kernel_size=(3, 3), activation='relu', padding='same', input_shape=self.input_shape),
-        BatchNormalization(),
-        MaxPooling2D(pool_size=(2, 2)),
-        
-        # Second conv layer
-        Conv2D(64, kernel_size=(3, 3), activation='relu', padding='same'),
-        BatchNormalization(),
-        MaxPooling2D(pool_size=(2, 2)),
-
-        # Third conv layer
-        Conv2D(128, kernel_size=(3, 3), activation='relu', padding='same'),
-        BatchNormalization(),
-        MaxPooling2D(pool_size=(2, 2)),
-
-        # Flatten the 3D output to 1D
-        Flatten(),
-        Dense(256),
-        Reshape((128, 2)),
-
-        Dense layers for further processing
-        Dense(256, activation='relu'),
-        Dropout(0.5),
-        Dense(128, activation='relu'),
-        Dropout(0.5),
-        Dense(64, activation='relu'),
-        BatchNormalization(),
-
-        # Output layer: dimension of the summary vector
-        # Dense(30, activation='relu')  # Adjust the size according to your needs
-        DeepSet(30)
-    ])
-
 
     # def set_summary_network(self):
     #     self.summary_network = Sequential([
@@ -185,6 +149,36 @@ class BayesianFlowNetwork:
         # self.X_train = np.reshape(self.X_train, (self.X_train.shape[0], -1, self.X_train.shape[2]))
         # self.X_test  = np.reshape(self.X_test,  (self.X_test.shape[0],  -1, self.X_test.shape[2]))
         # self.summary_network = DeepSet(12)
+
+    def set_summary_network(self):
+
+        self.summary_network = Sequential([
+
+        Conv2D(32, kernel_size=(3, 3), activation='relu', padding='same', input_shape=self.input_shape),
+        BatchNormalization(),
+        MaxPooling2D(pool_size=(2, 2)),
+        
+        Conv2D(64, kernel_size=(3, 3), activation='relu', padding='same'),
+        BatchNormalization(),
+        MaxPooling2D(pool_size=(2, 2)),
+
+        Conv2D(128, kernel_size=(3, 3), activation='relu', padding='same'),
+        BatchNormalization(),
+        MaxPooling2D(pool_size=(2, 2)),
+
+        Flatten(),
+        Dense(256),
+        Reshape((128, 2)),
+
+        Dense(256, activation='relu'),
+        Dropout(0.5),
+        Dense(128, activation='relu'),
+        Dropout(0.5),
+        Dense(64, activation='relu'),
+        BatchNormalization(),
+
+        DeepSet(30)
+    ])
 
     def set_inference_network(self):
         self.inference_network = InvertibleNetwork(

@@ -1,11 +1,12 @@
+bayesflow
 corner
 matplotlib
 mpmath
 numpy 
 pandas
+six
 scipy
 scikit-learn
 tensorflow
 tensorflow_probability
 tqdm
-six

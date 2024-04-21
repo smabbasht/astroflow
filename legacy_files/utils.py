@@ -21,8 +21,8 @@
 #
 # def fib(n):
 import numpy as np
-np.save("dataset_arrays_4000/X_train.npy", np.load("dataset_arrays_5/X_train.npy")[:4000])
-np.save("dataset_arrays_4000/X_test.npy", np.load("dataset_arrays_5/X_test.npy")[:100])
-np.save("dataset_arrays_4000/y_train.npy", np.load("dataset_arrays_5/y_train.npy")[:4000])
-np.save("dataset_arrays_4000/y_test.npy", np.load("dataset_arrays_5/y_test.npy")[:100])
+np.save("dataset_arrays_3000/X_train.npy", np.load("dataset_arrays_5/X_train.npy")[:3000])
+np.save("dataset_arrays_3000/X_test.npy", np.load("dataset_arrays_5/X_test.npy")[:100])
+np.save("dataset_arrays_3000/y_train.npy", np.load("dataset_arrays_5/y_train.npy")[:3000])
+np.save("dataset_arrays_3000/y_test.npy", np.load("dataset_arrays_5/y_test.npy")[:100])
 
