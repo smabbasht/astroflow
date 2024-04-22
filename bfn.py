@@ -19,6 +19,7 @@ from bayesflow.networks import DeepSet, SequenceNetwork, InvariantNetwork
 
 import os
 import tqdm
+import time
 import corner
 import numpy as np
 import matplotlib.pyplot as plt 
@@ -178,16 +179,18 @@ class BayesianFlowNetwork:
         BatchNormalization(),
 
         SequenceNetwork(30)
+        # Dense(30)
     ])
 
     def set_inference_network(self):
+
         self.inference_network = InvertibleNetwork(
             num_params=8,  # parameters to estimate
-            num_coupling_layers=5,
-            coupling_design="spline",
+            num_coupling_layers=8,
             use_act_norm=True,
-            use_soft_flow=True,
-            # coupling_settings={"dense_args": dict(kernel_regularizer=None), "dropout": False},
+            coupling_design="affine",
+            permutation="learnable",
+            coupling_settings={"mc_dropout" : True, "dense_args" : dict(units=128, activation="elu")}
         )
         print("Inference Network Defined")
 
@@ -198,7 +201,7 @@ class BayesianFlowNetwork:
     def train(self, epochs=100):
         simulations_dict = {'sim_data': self.X_train, 'prior_draws': self.y_train}
         self.trainer.train_offline(simulations_dict, batch_size=self.batch_size, epochs=epochs, 
-                                   optimizer=Adam(learning_rate=0.0005), checkpoint_path="models")
+                                   optimizer=Adam(learning_rate=0.0005), )
         # self.trainer.train_offline(simulations_dict, batch_size=self.batch_size, epochs=epochs, optimizer=RMSprop(learning_rate=0.001, rho=0.9))
 
     def predict(self, X=None):
@@ -209,7 +212,13 @@ class BayesianFlowNetwork:
         # print(f"expected_means: \n{self.y_test[:15]}")
         # print()
         # print("predicted_means:")
-        samples = self.amortized_posterior.sample({'summary_conditions': self.X_test}, n_samples=5000)
+        nsamples = 5000
+        start = time.time()
+        samples = self.amortized_posterior.sample({'summary_conditions': self.X_test}, n_samples=nsamples)
+        end = time.time()
+        timetaken = end-start
+        print(f"Inferred posterior distributions with {nsamples} each for {len(self.X_test)} test examples in {timetaken} seconds")
+
         # predicted_means = np.mean(samples, axis=1)
         # np.set_printoptions(suppress=True)
         # print(predicted_means)

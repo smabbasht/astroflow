@@ -44,12 +44,14 @@ model.train()
 # ----------------------------------------------
 
 samples=model.predict()
-model.plot(samples, model.y_test[:100], "figures", "bfn_20")
+
+model.plot(samples, model.y_test[:n], "figures", "bfn_20")
+
 
 # ----------------------------------------------
 
-# print("Saving the model")
-# model.save_model('models/model')
+print("Saving the model")
+model.save_model('models/model')
 
 # model.load_model('models/model.pth')
 # predictions, truths = model.infer(data_offset=2000, n_examples=50)
